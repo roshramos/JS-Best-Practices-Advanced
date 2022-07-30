@@ -55,30 +55,51 @@ console.log (sortHighToLow([
 
 
 //Q4 PROMISES
-//
-
-function asdf () {
-
-}
-
-console.log (asdf())
+/**On Youtube, watch:
+ * "The Asyc Await Episode I Promised" - Fireship
+ * https://www.youtube.com/watch?v=vn3tm0quoqE
+ * 
+ * "Async Await JavaScript ES7" - Techsith (1.5x Speed)
+ * https://www.youtube.com/watch?v=PoRJizFvM7s
+ * 
+ * "Async JS Crash Coure - Callbacks, Promises, Async Await" - Traversy Media (1.5x Speed)
+ * https://www.youtube.com/watch?v=IGoAdn-e5II
+ */
 
 
 //Q5 FIND ALL THE POSTS BY A SINGLE USER
 //Call this API "https://jsonplaceholder.typicode.com/posts" and return all the posts by any given user Id.
 
-function postsByUser () {
+async function postsByUser (userId) {
+    const promise = await fetch ("https://jsonplaceholder.typicode.com/posts")
 
+    const result = await promise.json()
+
+    const posts = result.filter (element => element.userId === userId)
+
+    console.log (posts)
 }
 
-console.log (postsByUser())
+console.log (postsByUser(1))
+
+/**NOTE:
+ * "async" goes next to the function
+ * "await" goes inside the function next to the promise 
+ */
 
 
 //Q6 FIRST 6 INCOMPLETE TODOS
 //Call this API "https://jsonplaceholder.typicode.com/todos" and return the first 6 incomplete todo's from the result.
 
-function firstSixIncomplete () {
+async function firstSixIncomplete (userId) {
+    const promise = await fetch ("https://jsonplaceholder.typicode.com/todos")
 
+    const result = await promise.json()
+
+    const incompleteTasks = result.filter (elem => !elem.completed).slice(0, 6)
+
+    console.log(incompleteTasks)
 }
 
-console.log (firstSixIncomplete())
+
+console.log (firstSixIncomplete(6))
